@@ -4,23 +4,13 @@ library(tseries)
 #install.packages("moments", lib="/user/9/.base/paviotch/home/R/")
 library(moments, lib.loc="/user/9/.base/paviotch/home/R/")
 load("RentDJINDUS.RData")
-
+source("fonctions.R")
 #Question 1  Etudiez la distribution empirique des rentabilités journalières, hebdomadaires, mensuelles de votre titre. Interprétez les résultats.
-
-GetSubset <- function(date_debut, date_fin){
-  vect = c()
-  for (i in 1:length(RentJ$Dates)){
-    if(RentJ$Dates[i]<= date_fin && RentJ$Dates[i]>= date_debut){
-      vect = c(vect,RentJ$Rt[i])
-    }
-    i= i+1;
-  }
- return(vect)
-} 
 
 pdf("rentabilité_journaliere.pdf")
 plot(RentJ$Rt, xlab='dates', ylab='R(t)', main="Rentabilités journalières du Dow Jones", type='l', col='blue')
 dev.off()
+
 
 #Rentabilités journalières
 densityRtJ = density(RentJ$Rt)

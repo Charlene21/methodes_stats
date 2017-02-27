@@ -5,44 +5,26 @@ library(stringr)
 # mean2 = 0;
 # i = 0;
 # j = 0;
+# vect1 = c()
+# vect2 = c()
 # for (i in 1:length(RentJ$Dates)){
-# 	if(str_sub(RentJ$Dates[i], 1, 4) <= 2002){
-# 		mean1 = mean1 + RentJ$Rt[i];
-# 		i= i+1;
+# 	if(str_sub(RentJ$Dates[i], 1, 4) <= 2002 && str_sub(RentJ$Dates[i], 1, 4) >= 1990){
+# vect1 = c(vect1,RentJ$Rt[i])
 # 	}
-# 	else {
-# 		mean2 = mean2 + RentJ$Rt[i];
-# 		j=j+1;
+# 	else if (str_sub(RentJ$Dates[i], 1, 4) >= 2003){
+# 	  vect2 = c(vect2,RentJ$Rt[i])
 # 		}
 # }
-# cat("mean 1 = ", mean1/i, "\n")
-# cat("mean 2 = ", mean2/j, "\n")
-
-#Variance des rentabilités journalières sur [1990-2002] et [2003-2016]
-# var1 = 0;
-# n1=0;
-# var2 = 0;
-# n2=0;
-# for (i in 1:length(RentJ$Dates)){
-# 	if(str_sub(RentJ$Dates[i], 1, 4) <= 2002){
-# 		n1 = n1 + 1;
-# 		var1 = var1 + (RentJ$Rt[i] - mean1)^2;
-# 	}
-# 	else {
-# 		n2 = n2 + 1
-# 		var2 = var2 + (RentJ$Rt[i] - mean2)^2;
-# 		}
-# 				}
+# cat("mean 1 = ", mean(vect1), "\n")
+# cat("mean 2 = ", mean(vect2), "\n")
+# cat("var 1 = ", var(vect1), "\n")
+# cat("var 2 = ", var(vect2), "\n")
 # 
-# var1 = var1/n1;
-# var2 = var2/n2;
-# cat("var1 = ",var1, "\n");
-# cat("var2 = ",var2, "\n");
 
 #### Correction avec la fonction GetSubset
 source("fonctions.R")
 vect1 = GetSubset("1990-01-01", "2002-12-31");
-vect2 = GetSubset("2003-01-01", "2016-12-31");
+vect2 = GetSubset("2003-01-01", "2016-05-31");
 mean1 = mean(vect1);
 mean2 = mean(vect2);
 cat("mean 1 = ", mean1, "\n");

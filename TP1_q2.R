@@ -1,8 +1,8 @@
 # Question 2 : Etudiez la dépendance linéaire (modèle ARMA) des rentabilités journalières, hebdomadaires. Peut-on tirer profit de cette dépendance ? Comment ? Conséquences en termes d’efficience des marchés.
 
 
-install.packages("forecast", lib="/user/9/.base/paviotch/home/R/x86_64-pc-linux-gnu-library/3.3")
-library(forecast, lib.loc="/user/9/.base/paviotch/home/R/x86_64-pc-linux-gnu-library/3.3")
+#install.packages("forecast", lib="/user/9/.base/paviotch/home/R/")
+library(forecast, lib.loc="/user/9/.base/paviotch/home/R/")
 
 
 
@@ -10,7 +10,7 @@ pdf("arma_journaliere.pdf")
 acf(RentJ$Rt, lag=200) #donne p = 4, MA = acf
 pacf(RentJ$Rt, lag = 200) #donne q = 2 AR = pacf
 dev.off()
-print(auto.arima(RentJ$Rt)) #meilleur modele : arma(2,2)
+print(auto.arima(RentJ$Rt, max.p=4, max.q=2,max.order=4, stepwise = FALSE)) #meilleur modele : arma(2,2)
 
 pdf("arma_hebdomadaire.pdf")
 acf(RentH$Rt, lag=200) #donne p = 3

@@ -5,7 +5,7 @@ library(tseries)
 load("RentDJINDUS.RData")
 
 #rentabilités journalières
-archDowJones <- garchFit(formula = ~ arma(2,2) + garch(1,1), data=RentJ$Rt)
+archDowJones <- garchFit(formula = ~ arma(0,2) + garch(1,1), data=RentJ$Rt)
 print(summary(archDowJones))
 
 #archDowJones<-garch(RentJ$Rt, order = c(0, 11))

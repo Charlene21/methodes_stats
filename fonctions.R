@@ -1,3 +1,4 @@
+# Fonction permettant de récuperer une partie des données
 GetSubset <- function(date_debut, date_fin){
   vect = c()
   for (i in 1:length(RentJ$Dates)){
@@ -8,3 +9,14 @@ GetSubset <- function(date_debut, date_fin){
   }
   return(vect)
 } 
+
+# Fonction de calcul du R²
+# Paramètres
+# ARMA(p, q)
+# GARCH(a, b)
+# rentabilites : contient les donnees
+calculRcarre <- function(modele, rentabilites) {
+  variance <- var(modele@residuals[!is.na(modele@residuals)])
+  Rcarre <- 1-(variance/var(rentabilites$Rt))
+  return(Rcarre)
+}

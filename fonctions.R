@@ -1,10 +1,10 @@
-GetSubset <- function(date_debut, date_fin){
-  vect = c()
-  for (i in 1:length(RentJ$Dates)){
-    if(RentJ$Dates[i]<= date_fin && RentJ$Dates[i]>= date_debut){
-      vect = c(vect,RentJ$Rt[i])
+GetSubset <- function(date_debut, date_fin, vect){
+  vector = c()
+  for (i in 1:length(vect$Dates)){
+    if(vect$Dates[i]<= date_fin && vect$Dates[i]>= date_debut){
+      vector = c(vector,vect$Rt[i])
     }
     i= i+1;
   }
-  return(vect)
+  return(vector)
 } 

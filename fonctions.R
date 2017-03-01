@@ -8,3 +8,4 @@ GetSubset <- function(date_debut, date_fin, vect){
   }
   return(vector)
 } 
+

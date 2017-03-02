@@ -1,18 +1,17 @@
-#TP1
 .libPaths("/user/1/taram/Public/RLib") 
 library(tseries)
-#install.packages("moments", lib="/user/9/.base/paviotch/home/R/")
-library(moments, lib.loc="/user/9/.base/paviotch/home/R/")
+library(moments)
 load("RentDJINDUS.RData")
 source("fonctions.R")
+
 #Question 1  Etudiez la distribution empirique des rentabilités journalières, hebdomadaires, mensuelles de votre titre. Interprétez les résultats.
+
+#Rentabilités journalières
 
 pdf("rentabilité_journaliere.pdf")
 plot(RentJ$Rt, xlab='dates', ylab='R(t)', main="Rentabilités journalières du Dow Jones", type='l', col='blue')
 dev.off()
 
-
-#Rentabilités journalières
 densityRtJ = density(RentJ$Rt)
 
 pdf("densite_journaliere.pdf")
@@ -27,8 +26,8 @@ dev.off()
 
 
 #Rentabilités hebdomadaires
-densityRtH = density(RentH$Rt)
 
+densityRtH = density(RentH$Rt)
 
 pdf("densite_hebdo.pdf")
 plot(densityRtH,type="n",main="Graphique de distribution des rentabilités hebdomadaires")
@@ -42,8 +41,8 @@ dev.off()
 
 
 #Rentabilités mensuelles
-densityRtM = density(RentM$Rt)
 
+densityRtM = density(RentM$Rt)
 pdf("densite_mensuel.pdf")
 plot(densityRtM,type="n",main="Graphique de distribution des rentabilités mensuelles")
 lines(densityRtM)
@@ -54,12 +53,13 @@ lines(col='red',density(rnorm(tailleM, mean = moyM, sd = sqrt(varianceM))))
 lines(hist(RentM$Rt,xlab=" ",main="Histogramme pour les rentabilités mensuelles"))
 dev.off()
 
-subset1 = GetSubset("1973-01-02", "1980-01-02")
-subset2 = GetSubset("1980-01-03", "1987-01-03")
-subset3 = GetSubset("1987-01-04", "1994-01-04")
-subset4 = GetSubset("1994-01-05", "2001-01-05")
-subset5 = GetSubset("2001-01-06", "2008-01-06")
-subset6 = GetSubset("2008-01-07", "2016-05-31")
+#Tableau de valeurs pour les rentabilités journalieres
+subset1 = GetSubset("1973-01-02", "1980-01-02",RentJ)
+subset2 = GetSubset("1980-01-03", "1987-01-03",RentJ)
+subset3 = GetSubset("1987-01-04", "1994-01-04",RentJ)
+subset4 = GetSubset("1994-01-05", "2001-01-05",RentJ)
+subset5 = GetSubset("2001-01-06", "2008-01-06",RentJ)
+subset6 = GetSubset("2008-01-07", "2016-05-31",RentJ)
 
 print("moyenne des échantillons : ")
 mean1 = mean(subset1)
@@ -148,8 +148,3 @@ print(anscombe.test(subset3))
 print(anscombe.test(subset4))
 print(anscombe.test(subset5))
 print(anscombe.test(subset6))
-
-
-#tableau p12
-
-

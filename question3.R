@@ -1,7 +1,4 @@
 load("RentDJINDUS.RData");
-#RentX : dates + rentas(hebdo, jour, mens)
-
-# cf p.16 du poly, section 1.4.9
 
 .libPaths("/user/1/taram/Public/RLib")
 load("RHmm")
@@ -9,6 +6,7 @@ library(RHmm)
 
 HMM = HMMFit(RentJ$Rt)
 vit = viterbi(HMM,RentJ$Rt)
+
 #Graphic diagnostic of the HMM estimation
 HMMGraphicDiag(vit,HMM,RentJ$Rt)
 

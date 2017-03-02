@@ -4,8 +4,8 @@ library(tseries)
 
 RentCarre <- (RentJ$Rt)^2
 
-pdf("arma_journaliere_Carre.pdf")
-pacf(RentCarre, plot = T, main='Autocorrelations partielles de la serie des rentabilites au carre',
+pdf("pacf_journaliere_Carre.pdf")
+pacf(RentCarre, plot = T, main='PACF de la serie des rentabilites au carre',
 xlab='Retards', ylab='Autocorrelations partielles')
 dev.off()
 
@@ -16,10 +16,11 @@ R2DowJones<-1-var(ArmaCarre$residuals[!is.na(ArmaCarre$residuals)])/var(RentCarr
 cat("R² = ", R2DowJones, "\n")
 
 RentAbs <- abs(RentJ$Rt)
-pdf("arma_journaliere_abs.pdf")
-pacf(RentAbs, plot = T, main='Autocorrelations partielles de la serie des valeurs absolues \n des rentabilites',
+pdf("pacf_journaliere_abs.pdf")
+pacf(RentAbs, plot = T, main='PACF de la serie des valeurs absolues \n des rentabilites',
 xlab='Retards', ylab='Autocorrelations partielles')
 dev.off()
+
 
 ArmaAbs <- arma(RentAbs, order=c(12,0))
 print(summary(ArmaAbs))

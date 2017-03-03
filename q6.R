@@ -71,8 +71,8 @@ source("fonctions.R")
     AIC = 0
     i_best = 0
     j_best = 0
-    for (i in 1:2) {
-      for (j in 0:3) {
+    for (i in 1:4) {
+      for (j in 0:4) {
         #Resultat : i=3,j=4, AIC=-5.053679
         #formula = as.formula(paste("~garch(",i,",",j,")"))
         #Resultat : i=4,j=4, AIC=-5.061297

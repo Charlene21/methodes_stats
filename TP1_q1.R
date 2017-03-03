@@ -1,11 +1,11 @@
 .libPaths("/user/1/taram/Public/RLib") 
 library(tseries)
-library(moments)
+#library(moments)
 load("RentDJINDUS.RData")
 source("fonctions.R")
 
 #Question 1  Etudiez la distribution empirique des rentabilités journalières, hebdomadaires, mensuelles de votre titre. Interprétez les résultats.
-
+tailleDensite = 1000000
 #Rentabilités journalières
 
 pdf("rentabilité_journaliere.pdf")
@@ -20,7 +20,7 @@ lines(densityRtJ)
 taille <- length(RentJ$Rt)
 moy <- mean(RentJ$Rt)
 variance <- var(RentJ$Rt)
-lines(col='red',density(rnorm(taille, mean = moy, sd = sqrt(variance))))
+lines(col='red',density(rnorm(tailleDensite, mean = moy, sd = sqrt(variance))))
 lines(hist(RentJ$Rt, xlab=" ", main="Histogramme pour les rentabilités journalières"))
 dev.off()
 
@@ -35,7 +35,7 @@ lines(densityRtH)
 tailleH <- length(RentH$Rt)
 moyH <- mean(RentH$Rt)
 varianceH <- var(RentH$Rt)
-lines(col='red',density(rnorm(tailleH, mean = moyH, sd = sqrt(varianceH))))
+lines(col='red',density(rnorm(tailleDensite, mean = moyH, sd = sqrt(varianceH))))
 lines(hist(RentH$Rt,xlab=" ",main="Histogramme pour les rentabilités hebdomadaires"))
 dev.off()
 
@@ -49,7 +49,7 @@ lines(densityRtM)
 tailleM <- length(RentM$Rt)
 moyM <- mean(RentM$Rt)
 varianceM <- var(RentM$Rt)
-lines(col='red',density(rnorm(tailleM, mean = moyM, sd = sqrt(varianceM))))
+lines(col='red',density(rnorm(tailleDensite, mean = moyM, sd = sqrt(varianceM))))
 lines(hist(RentM$Rt,xlab=" ",main="Histogramme pour les rentabilités mensuelles"))
 dev.off()
 

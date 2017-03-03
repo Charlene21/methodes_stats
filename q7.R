@@ -1,3 +1,8 @@
+.libPaths("/user/1/taram/Public/RLib") 
+library(fGarch)
+library(tseries)
+source("fonctions.R")
+
 Renta = GetSubset("1990-01-02", "2014-12-31", RentJ)
 
 # AIC = 0
@@ -28,21 +33,24 @@ best_model = garchFit(formula = ~garch(2,2), data=Renta,trace = FALSE)
 ##
 matcoefs = best_model@fit$matcoef
 
+pdf("q7jour.pdf")
 Rents = GetSubset("1990-01-02","2016-05-31", RentJ)
 Rentabilites = GetSubset("2015-01-01", "2016-05-31", RentJ)
-predictValues = predict(best_model,n.ahead = length(Rentabilites), plot=TRUE , nx= 10)
-Rents = c(0,0,0,0,0,0,0,0,0,0, Rents)
-lines(Rents, col='blue')
+NX = 10
+predict(best_model,n.ahead = length(Rentabilites), plot=TRUE , nx= NX)
+Rentabilites = c(rep(0, NX), Rentabilites)
+lines(Rentabilites, col='blue')
+dev.off()
 
-vect = c(0,0,0,0,0,0,0,0,0,0)
-compteur = 0;
-for (i in 1:length(Rentabilites)){
-  plus = predictValues$meanForecast[i] +1.96*predictValues$standardDeviation[i]
-  moins = predictValues$meanForecast[i] -1.96*predictValues$standardDeviation[i]
-  vect= c(vect,predictValues$meanForecast[i] +1.96*predictValues$standardDeviation[i])
-  if(Rentabilites[i] < plus && Rentabilites[i] > moins){
-    compteur = compteur +1;
-  }
-}
-
-cat("ratio = ", compteur/length(Rentabilites))
+# vect = c(0,0,0,0,0,0,0,0,0,0)
+# compteur = 0;
+# for (i in 1:length(Rentabilites)){
+#   plus = predictValues$meanForecast[i] +1.96*predictValues$standardDeviation[i]
+#   moins = predictValues$meanForecast[i] -1.96*predictValues$standardDeviation[i]
+#   vect= c(vect,predictValues$meanForecast[i] +1.96*predictValues$standardDeviation[i])
+#   if(Rentabilites[i] < plus && Rentabilites[i] > moins){
+#     compteur = compteur +1;
+#   }
+# }
+# 
+# cat("ratio = ", compteur/length(Rentabilites))

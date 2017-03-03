@@ -16,3 +16,8 @@ cat("var1 = ", var1, "\n");
 cat("var2 = ", var2, "\n");
 cat("var annualisée 1 = ", var1*sqrt(250), "\n");
 cat("var annualisée 2 = ", var2*sqrt(250), "\n");
+
+#tests de Student et Fisher
+t.test(vect1,vect2)
+
+var.test(vect1,vect2)

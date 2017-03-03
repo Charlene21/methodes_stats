@@ -21,6 +21,16 @@ pacf(RentAbs, plot = T, main='PACF de la serie des valeurs absolues \n des renta
 xlab='Retards', ylab='Autocorrelations partielles')
 dev.off()
 
+pdf("acf_journaliere_abs.pdf")
+acf(RentAbs, plot = T, main='ACF de la serie des valeurs absolues \n des rentabilites',
+     xlab='Retards', ylab='Autocorrelations')
+dev.off()
+
+pdf("acf_journaliere_Carre.pdf")
+acf(RentCarre, plot = T, main='ACF de la serie des rentabilites au carre',
+     xlab='Retards', ylab='Autocorrelations')
+dev.off()
+
 
 ArmaAbs <- arma(RentAbs, order=c(12,0))
 print(summary(ArmaAbs))

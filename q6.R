@@ -40,7 +40,7 @@ Renta = GetSubset("1990-01-02", "2014-12-31", RentJ)
 cat("length : ", length(Renta), "\n")
 archDowJones1 <- garchFit(formula = ~ garch(2,1), data=Renta,trace = FALSE)
 print(summary(archDowJones1))
-sample1 = archDowJones1@residuals[!is.na(archDowJones1@residuals)]
+sample1 = archDowJones@residuals[!is.na(archDowJones@residuals)]
 sample1 = sample1[1:5000]
 cat("shapiro Renta : \n")
 print(shapiro.test(sample1)[2]$p.value)
